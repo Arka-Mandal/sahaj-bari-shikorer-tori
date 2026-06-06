@@ -3,7 +3,13 @@ import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Story } from "@/components/Story";
+import { WhyUs } from "@/components/WhyUs";
+import { Categories } from "@/components/Categories";
 import { CraftGrid } from "@/components/CraftGrid";
+import { Impact } from "@/components/Impact";
+import { TribalIndia } from "@/components/TribalIndia";
+import { Testimonials } from "@/components/Testimonials";
+import { InstagramGallery } from "@/components/InstagramGallery";
 import { Journal } from "@/components/Journal";
 import { Visit } from "@/components/Visit";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -38,7 +44,13 @@ function Index() {
         <Hero />
         <Marquee />
         <Story />
+        <WhyUs />
+        <Categories />
         <CraftGrid />
+        <Impact />
+        <TribalIndia />
+        <Testimonials />
+        <InstagramGallery />
         <Journal />
         <Visit />
       </main>
