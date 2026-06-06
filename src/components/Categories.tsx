@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import sarees from "@/assets/cat-sarees.jpg";
 import jewelry from "@/assets/craft-jewelry.jpg";
 import perfume from "@/assets/cat-perfume.jpg";
@@ -8,14 +9,14 @@ import cane from "@/assets/craft-cane.jpg";
 import kantha from "@/assets/craft-kantha.jpg";
 
 const cats = [
-  { img: sarees, name: "Sarees", bn: "শাড়ি", note: "Handwoven · Jamdani · Tussar" },
-  { img: jewelry, name: "Handcrafted Jewellery", bn: "গহনা", note: "Tribal · Dokra · Heirloom" },
-  { img: perfume, name: "Natural Perfumes", bn: "আতর", note: "Botanical · Alcohol-free" },
-  { img: soap, name: "Organic Soaps", bn: "সাবান", note: "Cold-pressed · Ayurvedic" },
-  { img: colours, name: "Organic Colours", bn: "রঙ", note: "Plant-based · Holi safe" },
-  { img: pottery, name: "Handcrafted Decor", bn: "সাজ", note: "Terracotta · Wood · Brass" },
-  { img: cane, name: "Indigenous Lifestyle", bn: "জীবন", note: "Cane · Bamboo · Jute" },
-  { img: kantha, name: "Artisanal Gifts", bn: "উপহার", note: "Curated · Gift-wrapped" },
+  { slug: "sarees", img: sarees, name: "Sarees", bn: "শাড়ি", note: "Handwoven · Jamdani · Tussar" },
+  { slug: "jewellery", img: jewelry, name: "Handcrafted Jewellery", bn: "গহনা", note: "Tribal · Dokra · Heirloom" },
+  { slug: "perfumes", img: perfume, name: "Natural Perfumes", bn: "আতর", note: "Botanical · Alcohol-free" },
+  { slug: "soaps", img: soap, name: "Organic Soaps", bn: "সাবান", note: "Cold-pressed · Ayurvedic" },
+  { slug: "colours", img: colours, name: "Organic Colours", bn: "রঙ", note: "Plant-based · Holi safe" },
+  { slug: "decor", img: pottery, name: "Handcrafted Decor", bn: "সাজ", note: "Terracotta · Wood · Brass" },
+  { slug: "lifestyle", img: cane, name: "Indigenous Lifestyle", bn: "জীবন", note: "Cane · Bamboo · Jute" },
+  { slug: "gifts", img: kantha, name: "Artisanal Gifts", bn: "উপহার", note: "Curated · Gift-wrapped" },
 ];
 
 export function Categories() {
@@ -38,11 +39,10 @@ export function Categories() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
           {cats.map((c, i) => (
-            <a
-              key={c.name}
-              href="https://wa.me/918240633170"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              key={c.slug}
+              to="/shop/$slug"
+              params={{ slug: c.slug }}
               className={`group relative overflow-hidden rounded-2xl bg-card border border-border shadow-frame ${
                 i === 0 || i === 5 ? "md:row-span-2 md:col-span-1" : ""
               }`}
@@ -67,10 +67,10 @@ export function Categories() {
                   {c.note}
                 </div>
                 <div className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-mustard opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                  Enquire →
+                  Discover →
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
