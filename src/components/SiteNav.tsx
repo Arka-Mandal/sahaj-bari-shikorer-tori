@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import logoAsset from "@/assets/sahaj-bari-logo.asset.json";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
+import { useCart } from "@/lib/cart";
 
 const links = [
-  { href: "#story", label: "Our Story", bn: "কথা" },
-  { href: "#craft", label: "Craft", bn: "শিল্প" },
-  { href: "#journal", label: "Journal", bn: "ডায়েরি" },
-  { href: "#visit", label: "Visit", bn: "ঠিকানা" },
+  { href: "/#shop", label: "Shop", bn: "দোকান" },
+  { href: "/#story", label: "Story", bn: "কথা" },
+  { href: "/#impact", label: "Impact", bn: "প্রভাব" },
+  { href: "/#visit", label: "Visit", bn: "ঠিকানা" },
 ];
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { count, setOpen: setCartOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -60,22 +62,37 @@ export function SiteNav() {
           ))}
         </nav>
 
-        <a
-          href="https://wa.me/918240633170"
-          target="_blank"
-          rel="noreferrer"
-          className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-terracotta-deep text-cream text-sm tracking-wide hover:bg-terracotta transition-colors"
-        >
-          Book on WhatsApp
-        </a>
+        <div className="flex items-center gap-2 md:gap-3">
+          <button
+            onClick={() => setCartOpen(true)}
+            aria-label="Open cart"
+            className="relative inline-flex items-center justify-center h-10 w-10 md:h-11 md:w-11 rounded-full border border-terracotta-deep/30 text-terracotta-deep hover:bg-terracotta-deep hover:text-cream transition-colors"
+          >
+            <ShoppingBag size={17} />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-terracotta-deep text-cream text-[10px] font-medium flex items-center justify-center ring-2 ring-cream">
+                {count}
+              </span>
+            )}
+          </button>
 
-        <button
-          className="md:hidden text-ink p-2"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <a
+            href="https://wa.me/918240633170"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-terracotta-deep text-cream text-sm tracking-wide hover:bg-terracotta transition-colors"
+          >
+            Book on WhatsApp
+          </a>
+
+          <button
+            className="md:hidden text-ink p-2"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {open && (
